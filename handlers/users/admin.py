@@ -786,8 +786,8 @@ async def urlses(message: Message, state: FSMContext):
     for tdata in os.listdir(f"{path}\\{us}\\tdata_to_sessions"):
         shutil.rmtree(f"{path}\\{us}\\tdata_to_sessions\\{tdata}")
     fg = len(baza)
-    sw = int(100\\fg)
-    ssw = int(100\\fg)
+    sw = int(100/fg)
+    ssw = int(100/fg)
     ms = await message.answer(
         f"<b>Выполняеться Скачивание {fg} Акаунтов<\\b>")
         
