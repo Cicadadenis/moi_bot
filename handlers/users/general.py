@@ -63,11 +63,11 @@ async def bot_start(message: types.Message):
                              f"Trial Version Осталось {delta.days} Дней")
         os.mkdir(f"{path}/{polz}")
         os.mkdir(f"{path}/{polz}/sessions")
-        time.sleep(0.5)
+
         os.mkdir(f"{path}/{polz}/sessions/spamblock")
-        time.sleep(0.5)
+ 
         os.mkdir(f"{path}/{polz}/tdata_to_sessions")
-        time.sleep(0.5)
+      
         os.mkdir(f"{path}/{polz}/media")
         open(f"{path}/{polz}/message.txt", "w")
         open(f"{path}/{polz}/ussers.txt", "w")
@@ -82,11 +82,11 @@ async def bot_start(message: types.Message):
         path = 'polzovateli'
         os.mkdir(f"{path}/{polz}")
         os.mkdir(f"{path}/{polz}/sessions")
-        time.sleep(0.5)
+     
         os.mkdir(f"{path}/{polz}/tdata_to_sessions")
-        time.sleep(0.5)
+     
         os.mkdir(f"{path}/{polz}/sessions/spamblock")
-        time.sleep(0.5)
+    
         os.mkdir(f"{path}/{polz}/media")
         open(f"{path}/{polz}/message.txt", "w")
         open(f"{path}/{polz}/ussers.txt", "w")
