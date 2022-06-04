@@ -1088,17 +1088,18 @@ async def spam_imag(message: Message, state: FSMContext):
                 akka = aka.split(".")[0]
                 with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
-
-                session = TelegramClient(
-                    StringSession(auth_key),
-                    api_id,
-                    api_hash,
-                    device_model="Redmi Note 10",
-                    lang_code="en",
-                    system_lang_code="en"
-                )
-                await session.connect()
-
+                try:
+                    session = TelegramClient(
+                        StringSession(auth_key),
+                        api_id,
+                        api_hash,
+                        device_model="Redmi Note 10",
+                        lang_code="en",
+                        system_lang_code="en"
+                    )
+                    await session.connect()
+                except:
+                    pass
                 z = 0
                 i = 0
                 for x in baza:
@@ -1276,7 +1277,13 @@ async def spam_fo_spis(message: Message, state: FSMContext):
                                 if stop == "ssstop":
                                     await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
                         except:
+                            baza.remove(x) 
+                            open(f"{path}/{us}/ussers.txt", "w")
+                            for x in baza:
+                                with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
+                                    f.write(f"{x}\n")
                             mom = len(baza)
+
                             c = c + 1
                             await msg.edit_text(                                
                                             f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
