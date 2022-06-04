@@ -51,14 +51,14 @@ async def del_broadcast_msg(call: CallbackQuery):
 
 @dp.message_handler(CommandStart(), state="*")
 async def bot_start(message: types.Message):
+    polz = message.chat.id
+    path = 'polzovateli'
     if delta == "0":
         await message.answer("<b>Срок Trial Version Истек !</b>")
         time.sleep(10)
         exit(1)
     if not await select_user(message.chat.id):
         await add_user(message.chat.id)
-        polz = message.chat.id
-        path = 'polzovateli'
         await message.answer("<b>❗️У вас нету подписки, чтобы пользоваться ботом</b>\n"
                              f"Trial Version Осталось {delta.days} Дней")
         os.mkdir(f"{path}/{polz}")
