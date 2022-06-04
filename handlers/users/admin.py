@@ -284,7 +284,7 @@ async def rep(call: CallbackQuery):
         try:
             acaunt = file_list[i]
             try:
-                npn  = int(open(f"check\\{acaunt}.txt", "r").read())
+                npn  = int(open(f"check/{acaunt}.txt", "r").read())
             except:
                 i = i + 1
                 continue
@@ -363,7 +363,7 @@ async def bio(message: Message, state):
         if file.endswith(".session"):
             session_path = os.path.join("sessions", file)
             
-            with open(f"{path}\\{us}\\{session_path}") as fileobj:
+            with open(f"{path}/{us}/{session_path}") as fileobj:
                  auth_key = fileobj.read()
             try:
                 session = TelegramClient(
@@ -411,7 +411,7 @@ async def rep1(call: CallbackQuery, state: FSMContext):
                 session_path = os.path.join("sessions", file)
                 aka = session_path.split("\\")[1]
                 akka = aka.split(".")[0]
-                with open(f"{path}\\{us}\\{session_path}") as fileobj:
+                with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
                 #try:
                 session = TelegramClient(
@@ -459,7 +459,7 @@ async def rename(call: CallbackQuery, state: FSMContext):
         if file.endswith(".session"):
             session_path = os.path.join("sessions", file)
             
-            with open(f"{path2}\\{us}\\{session_path}") as fileobj:
+            with open(f"{path2}/{us}/{session_path}") as fileobj:
                  auth_key = fileobj.read()
             try:
                 session = TelegramClient(
@@ -496,7 +496,7 @@ async def rename(call: CallbackQuery, state: FSMContext):
         if file.endswith(".session"):
             session_path = os.path.join("sessions", file)
             
-            with open(f"{path}\\{us}\\{session_path}") as fileobj:
+            with open(f"{path}/{us}/{session_path}") as fileobj:
                  auth_key = fileobj.read()
             try:
                 session = TelegramClient(
@@ -887,7 +887,7 @@ async def look_spam(call: CallbackQuery, state: FSMContext):
                 aka = session_path.split("\\")[1]
                 akka = aka.split(".")[0]
 
-                with open(f"{path}\\{us}\\{session_path}") as fileobj:
+                with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
                 try:
                     session = TelegramClient(
@@ -964,7 +964,7 @@ async def pass2fa(message: Message, state: FSMContext):
             aka = session_path.split("\\")[1]
             akka = aka.split(".")[0]
 
-            with open(f"{path}\\{us}\\{session_path}") as fileobj:
+            with open(f"{path}/{us}/{session_path}") as fileobj:
                     auth_key = fileobj.read()
             try:
                 session = TelegramClient(
@@ -1083,7 +1083,7 @@ async def spam_imag(message: Message, state: FSMContext):
             session_path = os.path.join("sessions", file)
             aka = session_path.split("\\")[1]
             akka = aka.split(".")[0]
-            with open(f"{path}\\{us}\\{session_path}") as fileobj:
+            with open(f"{path}/{us}/{session_path}") as fileobj:
                     auth_key = fileobj.read()
         
             session = TelegramClient(
@@ -1233,7 +1233,7 @@ async def spam_fo_spis(message: Message, state: FSMContext):
                 session_path = os.path.join("sessions", file)
                 aka = session_path.split("\\")[1]
                 akka = aka.split(".")[0]
-                with open(f"{path}\\{us}\\{session_path}") as fileobj:
+                with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
                 try:
                     session = TelegramClient(
@@ -1460,7 +1460,7 @@ async def add_to_chanel(message: Message, state: FSMContext):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
 
-                with open(f"{path}\\{us}\\{session_path}") as fileobj:
+                with open(f"{path}/{us}/{session_path}") as fileobj:
                      auth_key = fileobj.read()
                 try:
                     session = TelegramClient(
@@ -1501,7 +1501,7 @@ async def parser(message: Message, state: FSMContext):
             session_path = os.path.join("sessions", file)
             baza.append(session_path)
     ses = random.choice(baza)
-    with open(f"{path}\\{us}\\{ses}") as fileobj:
+    with open(f"{path}/{us}/{ses}") as fileobj:
             auth_key = fileobj.read()
     # try:
     session = TelegramClient(
@@ -1595,7 +1595,7 @@ async def clean_dialog(call: CallbackQuery, state: FSMContext):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
 
-                with open(f"{path}\\{us}\\{session_path}") as fileobj:
+                with open(f"{path}/{us}/{session_path}") as fileobj:
                      auth_key = fileobj.read()
 
                 session = TelegramClient(
@@ -1866,7 +1866,7 @@ async def gruuu(message: Message, state: FSMContext):
             file_list = os.listdir('sessions')
             acaunt = file_list[i]
             try:
-                npn  = int(open(f"check\\{acaunt}.txt", "r").read())
+                npn  = int(open(f"chec/{acaunt}.txt", "r").read())
             except:
                 i = i + 1
                 continue
@@ -2148,7 +2148,7 @@ async def broadcast_text_post(call: CallbackQuery):
         while xx >= i:
             acaunt = file_list[i]
             try:
-                npn  = int(open(f"check\\{acaunt}.txt", "r").read())
+                npn  = int(open(f"check/{acaunt}.txt", "r").read())
             except:
                 i = i + 1
                 continue
