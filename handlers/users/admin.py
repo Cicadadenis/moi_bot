@@ -2065,45 +2065,45 @@ async def gruuu(message: Message, state: FSMContext):
     await message.answer(
         f"<b>Список сохранен</b>\n"
         f"<b>Получено {zx} пользователей</b>", reply_markup=back_to_main_menu)
-
-async def sending_check(wait_for):
-    while True:
-        await asyncio.sleep(wait_for)
-        nv2 = (datetime.now().strftime("%d %B, %Y"))
-        nv = (datetime.now().strftime("%H:%M:%S"))
-        print(nv2)
-        if nv[:7] == "12:00:0":
-            print(nv2)
-            #with open(f"{username}.db", "rb") as doc:
-                #await bot.send_document(692916588,
-                                       ## doc,
-                                       # caption=f"📦 BACKUP\n"
-                                        #        f"🕜 {tt}")
-
-            time.sleep(2)
-vv = int('6')
-async def on_startup2(vv):
-    while True:
-        await asyncio.sleep(vv)
-        nv2 = (datetime.now().strftime("%d %b %Y, %H:%M"))
-        nv = (datetime.now().strftime("%H:%M:%S"))
-        off_spam = open("spam\\spam.txt", "r", encoding="utf-8").readlines()
-
-
-        for x in off_spam:
-            offs = x.split()
-            voz = offs[0]
-            vz = voz.split("'")
-            wernyt = vz[1]
-            pr = f"{offs[2]} {offs[3]} {offs[4]} {offs[5]}"
-            if pr == nv2:
-                shutil.move(f"spam\\{wernyt}", f"sessions\\{wernyt}")
-                with open("spam\\spam.txt", "w", encoding="utf-8") as f:
-                    f.writelines(off_spam[1:])
-
-       # if nv[:7] == "12:00:0":
-       #     print(nv2)
-       #     time.sleep(5)
+#
+#async def sending_check(wait_for):
+#    while True:
+#        await asyncio.sleep(wait_for)
+#        nv2 = (datetime.now().strftime("%d %B, %Y"))
+#        nv = (datetime.now().strftime("%H:%M:%S"))
+#        print(nv2)
+#        if nv[:7] == "12:00:0":
+#            print(nv2)
+#            #with open(f"{username}.db", "rb") as doc:
+#                #await bot.send_document(692916588,
+#                                       ## doc,
+#                                       # caption=f"📦 BACKUP\n"
+#                                        #        f"🕜 {tt}")
+#
+#            time.sleep(2)
+#vv = int('6')
+#async def on_startup2(vv):
+#    while True:
+#        await asyncio.sleep(vv)
+#        nv2 = (datetime.now().strftime("%d %b %Y, %H:%M"))
+#        nv = (datetime.now().strftime("%H:%M:%S"))
+#        off_spam = open("spam\\spam.txt", "r", encoding="utf-8").readlines()
+#
+#
+#        for x in off_spam:
+#            offs = x.split()
+#            voz = offs[0]
+#            vz = voz.split("'")
+#            wernyt = vz[1]
+#            pr = f"{offs[2]} {offs[3]} {offs[4]} {offs[5]}"
+#            if pr == nv2:
+#                shutil.move(f"spam\\{wernyt}", f"sessions\\{wernyt}")
+#                with open("spam\\spam.txt", "w", encoding="utf-8") as f:
+#                    f.writelines(off_spam[1:])
+#
+#       # if nv[:7] == "12:00:0":
+#       #     print(nv2)
+#       #     time.sleep(5)
 
 """
     @dp.callback_query_handler(text="stop_spam")
