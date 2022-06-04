@@ -97,7 +97,7 @@ repppo = InlineKeyboardMarkup(
 spamer = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text="Спам По Списку", callback_data="spam_fo_spis")
+            InlineKeyboardButton(text="Спам По Списку", callback_data="sp_spi")
         ],
         [
             InlineKeyboardButton(text="Спам По Списку Текстом И Картинкой", callback_data="spam_imag")
