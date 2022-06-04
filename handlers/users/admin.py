@@ -1145,7 +1145,7 @@ async def spam_imag(message: Message, state: FSMContext):
                 await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
                                     f"<b>❌     Недоставленно:  {c}</b>\n"
                                     f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-                
+                break    
             
     except:
         await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
@@ -1176,10 +1176,10 @@ async def sp_spi(call: CallbackQuery, state: FSMContext):
         sms = "нет"
     ban = len(os.listdir(f"{path}/{us}/sessions/spamblock"))
     report = len(open(f"{path}/{us}/report.txt", "r", encoding="utf-8").readlines())
-    if file_list <= 1:
+    if file_list <= 0:
         await call.message.answer('<b>У Тебя Нет Акаунтов</b>',
                          reply_markup=back_to_main_menu)
-    if users <= 1:
+    if users <= 0:
         await call.message.answer('<b>У Тебя Нет Пользователей Для Спама</b>',
                          reply_markup=back_to_main_menu)
     if mes <= 0:
@@ -1234,7 +1234,7 @@ async def sp_spi(message: Message, state: FSMContext):
                 )
                 await session.connect()
 
-                z = 0
+             
                 i = 0
                 for x in baza:
 
@@ -1260,7 +1260,7 @@ async def sp_spi(message: Message, state: FSMContext):
                                         f"<b>❌     Недоставленно:  {c}</b>\n"
                                         f"<b>✅     Доставленно:    {o}</b>\n\n"
                                         f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-                        z = 0
+                   
                         time.sleep(pauza)
                         open(f"{path}/{us}/ussers.txt", "w")
                         for z in baza:
@@ -1289,11 +1289,12 @@ async def sp_spi(message: Message, state: FSMContext):
                                         f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
 
                         time.sleep(3)
-                        z = z + 1
+                    
               
-        await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-                            f"<b>❌     Недоставленно:  {c}</b>\n"
-                            f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+                await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+                                    f"<b>❌     Недоставленно:  {c}</b>\n"
+                                    f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+                break
                     
        
     except:
