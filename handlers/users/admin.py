@@ -2,7 +2,7 @@ import asyncio
 import os
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
-from telethon.sync import TelegramClientimport asyncio
+from telethon.sync import TelegramClientimport 
 import os
 from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
