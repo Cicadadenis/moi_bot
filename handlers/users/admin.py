@@ -1210,8 +1210,8 @@ async def spam_fo_spis(message: Message, state: FSMContext):
     meees = open(f"{path}/{us}/message.txt", "r", encoding="utf-8").read()
     text = meees.split("$")
     baza = []
-    for z in a:
-        d = z.split("\n")
+    for zx in a:
+        d = zx.split("\n")
         for s in d:
             if s >= '0':
                 baza.append(s)
@@ -1227,76 +1227,74 @@ async def spam_fo_spis(message: Message, state: FSMContext):
                 akka = aka.split(".")[0]
                 with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
-                try:
-                    session = TelegramClient(
-                        StringSession(auth_key),
-                        api_id,
-                        api_hash,
-                        device_model="Redmi Note 10",
-                        lang_code="en",
-                        system_lang_code="en"
-                    )
-                    await session.connect()
+                
+                session = TelegramClient(
+                    StringSession(auth_key),
+                    api_id,
+                    api_hash,
+                    device_model="Redmi Note 10",
+                    lang_code="en",
+                    system_lang_code="en"
+                )
+                await session.connect()
 
-                    z = 0
-                    i = 0
-                    for x in baza:
+                z = 0
+                i = 0
+                for x in baza:
 
-                        if i == 35:
-                            break
-                        try:
-                            me = await session.get_me()
-                            try:
-                                v = await session.get_input_entity(x)     
-                            except:
-                                continue
-                            us = int(v.user_id)         
-                            asa = await session.get_input_entity(PeerUser(us))
-                            mes = random.choice(text)
-                            i = i + 1  
-                            await session.send_message(us, mes, parse_mode="html")
-                            baza.remove(x) 
-                            o = o + 1
-                            mom = len(baza)
-                            await msg.edit_text(                                
-                                            f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                            f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                                            f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                                            f"<b>❌     Недоставленно:  {c}</b>\n"
-                                            f"<b>✅     Доставленно:    {o}</b>\n\n"
-                                            f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-                            z = 0
-                            time.sleep(pauza)
-                            open(f"{path}/{us}/ussers.txt", "w")
-                            for z in baza:
-                                with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                    f.write(f"{z}\n")
-                            @dp.callback_query_handler(lambda c: c.data)
-                            async def poc_callback_but(c:CallbackQuery):
-                                stop = c.data
-                                if stop == "ssstop":
-                                    await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
-                        except:
-                            baza.remove(x) 
-                            open(f"{path}/{us}/ussers.txt", "w")
-                            for z in baza:
-                                with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                    f.write(f"{z}\n")
-                            mom = len(baza)
+                    if i == 35:
+                        break
+                    try:
+                        me = await session.get_me()
+                        
+                        v = await session.get_input_entity(x)     
+                    
+                        us = int(v.user_id)         
+                        asa = await session.get_input_entity(PeerUser(us))
+                        mes = random.choice(text)
+                        i = i + 1  
+                        await session.send_message(us, mes, parse_mode="html")
+                        baza.remove(x) 
+                        o = o + 1
+                        mom = len(baza)
+                        await msg.edit_text(                                
+                                        f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
+                                        f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                                        f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+                                        f"<b>❌     Недоставленно:  {c}</b>\n"
+                                        f"<b>✅     Доставленно:    {o}</b>\n\n"
+                                        f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
+                        z = 0
+                        time.sleep(pauza)
+                        open(f"{path}/{us}/ussers.txt", "w")
+                        for z in baza:
+                            with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
+                                f.write(f"{z}\n")
+                        @dp.callback_query_handler(lambda c: c.data)
+                        async def poc_callback_but(c:CallbackQuery):
+                            stop = c.data
+                            if stop == "ssstop":
+                                await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
+                    except:
+                        baza.remove(x) 
+                        open(f"{path}/{us}/ussers.txt", "w")
+                        for zz in baza:
+                            with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
+                                f.write(f"{zz}\n")
+                        mom = len(baza)
 
-                            c = c + 1
-                            await msg.edit_text(                                
-                                            f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                            f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                                            f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                                            f"<b>❌     Недоставленно:  {c}</b>\n"
-                                            f"<b>✅     Доставленно:    {o}</b>\n\n"
-                                            f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
+                        c = c + 1
+                        await msg.edit_text(                                
+                                        f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
+                                        f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                                        f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+                                        f"<b>❌     Недоставленно:  {c}</b>\n"
+                                        f"<b>✅     Доставленно:    {o}</b>\n\n"
+                                        f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
 
-                            time.sleep(3)
-                            z = z + 1
-                except:
-                    pass
+                        time.sleep(3)
+                        z = z + 1
+              
         await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
                             f"<b>❌     Недоставленно:  {c}</b>\n"
                             f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
