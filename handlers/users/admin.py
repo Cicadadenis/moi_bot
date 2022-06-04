@@ -1003,6 +1003,9 @@ async def report(call: CallbackQuery, state: FSMContext):
         sms = "нет"
     ban = len(os.listdir(f"{path}/{us}/sessions/spamblock"))
     report = len(open(f"{path}/{us}/report.txt", "r", encoding="utf-8").readlines())
+    if users <= 0:
+        await call.message.answer('<b>У Тебя Нет Списка Users</b>',
+                         reply_markup=back_to_main_menu)
     if file_list <= 1:
         await call.message.answer('<b>У Тебя Нет Акаунтов</b>',
                          reply_markup=back_to_main_menu)
@@ -1075,17 +1078,17 @@ async def spam_imag(message: Message, state: FSMContext):
                 baza.append(s)
     c = 0
     o = 0
-#try:
-    keyboard = InlineKeyboardMarkup()
-    keyboard.add(InlineKeyboardButton(text="Остановить", callback_data="ssstop"))
-    for file in os.listdir(f"{path}/{us}/sessions"):
-        if file.endswith(".session"):
-            session_path = os.path.join("sessions", file)
-            aka = session_path.split("/")[1]
-            akka = aka.split(".")[0]
-            with open(f"{path}/{us}/{session_path}") as fileobj:
-                    auth_key = fileobj.read()
-            try:
+    try:
+        keyboard = InlineKeyboardMarkup()
+        keyboard.add(InlineKeyboardButton(text="Остановить", callback_data="ssstop"))
+        for file in os.listdir(f"{path}/{us}/sessions"):
+            if file.endswith(".session"):
+                session_path = os.path.join("sessions", file)
+                aka = session_path.split("/")[1]
+                akka = aka.split(".")[0]
+                with open(f"{path}/{us}/{session_path}") as fileobj:
+                        auth_key = fileobj.read()
+
                 session = TelegramClient(
                     StringSession(auth_key),
                     api_id,
@@ -1095,75 +1098,62 @@ async def spam_imag(message: Message, state: FSMContext):
                     system_lang_code="en"
                 )
                 await session.connect()
-            except:
-                pass
-            z = 0
-            i = 0
-            for x in baza:
 
-                if i == 35:
-                    break
-                #try:
-                me = await session.get_me()
-                try:
-                    v = await session.get_input_entity(x)     
-                except:
-                    continue
-                us = int(v.user_id)         
-                asa = await session.get_input_entity(PeerUser(us))
-                mes = random.choice(text)
-                i = i + 1  
-                with open(f"{path}/{us}/media/{fil}", "rb") as f:
-                    ph = f.read()
-                    await session.send_file(
-                            us,
-                            ph,
-                            caption=mes,
-                            parse_mode="html"
-                        )
-                baza.remove(x) 
-                o = o + 1
-                mom = len(baza)
-                await msg.edit_text(                                
-                                f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                                f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                                f"<b>❌     Недоставленно:  {c}</b>\n"
-                                f"<b>✅     Доставленно:    {o}</b>\n\n"
-                                f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
                 z = 0
-                time.sleep(pauza)
-                open(f"{path}/{us}/ussers.txt", "w")
+                i = 0
                 for x in baza:
-                    with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                        f.write(f"{x}\n")
-                @dp.callback_query_handler(lambda c: c.data)
-                async def poc_callback_but(c:CallbackQuery):
-                    stop = c.data
-                    if stop == "ssstop":
-                        await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
-                #except:
-            #    mom = len(baza)
-            #    c = c + 1
-            #    await msg.edit_text(                                
-            #                    f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-            #                    f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-            #                    f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-            #                    f"<b>❌     Недоставленно:  {c}</b>\n"
-            #                    f"<b>✅     Доставленно:    {o}</b>\n\n"
-            #                    f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-#
-            #    time.sleep(3)
-            #    z = z + 1
+
+                    if i == 35:
+                        break
+                    #try:
+                    me = await session.get_me()
+                    try:
+                        v = await session.get_input_entity(x)     
+                    except:
+                        continue
+                    us = int(v.user_id)         
+                    asa = await session.get_input_entity(PeerUser(us))
+                    mes = random.choice(text)
+                    i = i + 1  
+                    with open(f"{path}/{us}/media/{fil}", "rb") as f:
+                        ph = f.read()
+                        await session.send_file(
+                                us,
+                                ph,
+                                caption=mes,
+                                parse_mode="html"
+                            )
+                    baza.remove(x) 
+                    o = o + 1
+                    mom = len(baza)
+                    await msg.edit_text(                                
+                                    f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
+                                    f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                                    f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+                                    f"<b>❌     Недоставленно:  {c}</b>\n"
+                                    f"<b>✅     Доставленно:    {o}</b>\n\n"
+                                    f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
+                    z = 0
+                    time.sleep(pauza)
+                    open(f"{path}/{us}/ussers.txt", "w")
+                    for x in baza:
+                        with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
+                            f.write(f"{x}\n")
+                    @dp.callback_query_handler(lambda c: c.data)
+                    async def poc_callback_but(c:CallbackQuery):
+                        stop = c.data
+                        if stop == "ssstop":
+                            await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
+
+                await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+                                    f"<b>❌     Недоставленно:  {c}</b>\n"
+                                    f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+                break
+            
+    except:
         await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
                             f"<b>❌     Недоставленно:  {c}</b>\n"
                             f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-        break
-
-#except:
-#    await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-#                        f"<b>❌     Недоставленно:  {c}</b>\n"
-#                        f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
 
 
 
@@ -2417,7 +2407,7 @@ async def broadcast_text_post(call: CallbackQuery, state: FSMContext):
 #
     #        for x in posts:
     #            fff = x.message
-    #            with open(f"check/{acaunt}.txt", "w") as m:
+    #            with open(f"check\\{acaunt}.txt", "w") as m:
     #                m.write("10")
     #            if fff == 'Good news, no limits are currently applied to your account. You’re free as a bird!':
     #                await call.message.edit_text(
