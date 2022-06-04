@@ -18,10 +18,21 @@ from modules.functions_storage import FunctionsStorage
 from telethon.sessions import StringSession
 from states.states import sessions
 from utils.db_api.db_commands import *
+from datetime import datetime
 from utils.other_utils import get_user_date, send_message_to_chat
 class test(StatesGroup):
     tt = State()
+first_date = date.today()
+second_date   =  date(2022, 6, 29)
+delta = second_date - first_date
 
+console = Console()
+
+if delta == "0":
+    console.print("\n\n\n\n\n[italic blink cyan]Срок Trial Version Истек !", justify="center")
+    time.sleep(10)
+    exit(1)
+zazaz = f'Trial Version Осталось {delta.days} Дней'
 @dp.callback_query_handler(IsNotSubscribed())
 async def answer_call(call: CallbackQuery):
     await call.answer("❗️У вас нету подписки, чтобы пользоваться ботом")
@@ -41,14 +52,20 @@ async def del_broadcast_msg(call: CallbackQuery):
 
 @dp.message_handler(CommandStart(), state="*")
 async def bot_start(message: types.Message):
-    
+    if delta == "0":
+        await message.answer("<b>Срок Trial Version Истек !</b>")
+        time.sleep(10)
+        exit(1)
     if not await select_user(message.chat.id):
         await add_user(message.chat.id)
         polz = message.chat.id
         path = 'polzovateli'
+        await message.answer("<b>❗️У вас нету подписки, чтобы пользоваться ботом</b>\n"
+                             f"Trial Version Осталось {delta.days} Дней")
         os.mkdir(f"{path}/{polz}")
         os.mkdir(f"{path}/{polz}/sessions")
         os.mkdir(f"{path}/{polz}/sessions/spamblock")
+        os.mkdir(f"{path}/{polz}/tdata_to_sessions")
         os.mkdir(f"{path}/{polz}/media")
         open(f"{path}/{polz}/message.txt", "w")
         open(f"{path}/{polz}/ussers.txt", "w")
@@ -114,6 +131,7 @@ async def support(call: CallbackQuery, state: FSMContext):
     #result_date = await get_user_date(call.message.chat.id)
 
     pp = await call.message.answer(
+            f"Trial Version Осталось {delta.days} Дней\n\n"
             f"👤    <b>Акаунтов для спама:</b>   {file_list}\n"
             f"✍️    <b>Акаунтов В Бане:</b> {ban}\n"
             f"✍️    <b>Сообщение Для Спама:</b> {sms}\n"
