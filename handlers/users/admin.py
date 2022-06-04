@@ -808,8 +808,8 @@ async def urlses(message: Message, state: FSMContext):
     sessions = []
     API_HASH = "bd4bbac77f54cd096ede52dd2e8e2e50"
     API_ID = 17463049
-    gg = int(100\\ff)
-    ggg = int(100\\ff)
+    gg = int(100/ff)
+    ggg = int(100/ff)
     for tdata in os.listdir(f"{path}\\{us}\\tdata_to_sessions"):
             
             auth_key = convert_tdata(f"{path}\\{us}\\tdata_to_sessions\\{tdata}\\tdata")[0]
@@ -1060,8 +1060,8 @@ async def spam_imag(message: Message, state: FSMContext):
     us = message.chat.id
     await bot.delete_message(chat_id=message.from_user.id, message_id=message.message_id)
     ff = len(os.listdir(f"{path}\\{us}\\sessions"))
-    gg = int(100\\ff)
-    ggg = int(100\\ff)
+    gg = int(100/ff)
+    ggg = int(100/ff)
     msg = await message.answer(f"<b>Начат процесс Cпама По Списку <\\b>")
     fil = random.choice(os.listdir(f"{path}\\{us}\\media"))
     a = open(f"{path}\\{us}\\ussers.txt", 'r', encoding='utf-8').readlines()
@@ -1211,8 +1211,8 @@ async def spam_fo_spis(message: Message, state: FSMContext):
     us = message.chat.id
     await bot.delete_message(chat_id=message.from_user.id, message_id=message.message_id)
     ff = len(os.listdir(f"{path}\\{us}\\sessions"))
-    gg = int(100\\ff)
-    ggg = int(100\\ff)
+    gg = int(100/ff)
+    ggg = int(100/ff)
     msg = await message.answer(f"<b>Начат процесс Cпама По Списку <\\b>")
     a = open(f"{path}\\{us}\\ussers.txt", 'r', encoding='utf-8').readlines()
     meees = open(f"{path}\\{us}\\message.txt", "r", encoding="utf-8").read()
@@ -1452,8 +1452,8 @@ async def add_to_chanel(message: Message, state: FSMContext):
     us = message.chat.id
     await bot.delete_message(chat_id=message.from_user.id, message_id=message.message_id)
     ff = len(os.listdir(f"{path}\\{us}\\sessions"))
-    gg = int(100\\ff)
-    ggg = int(100\\ff)
+    gg = int(100/ff)
+    ggg = int(100/ff)
     msg = await message.answer(f"<b>Начат процесс Вступления В Чат {ff}-и Акаунтам<\\b>")
     try:
         for file in os.listdir(f"{path}\\{us}\\sessions"):
@@ -1588,8 +1588,8 @@ async def clean_dialog(call: CallbackQuery, state: FSMContext):
 
     else:
         ff = len(os.listdir(f"{path}\\{us}\\sessions"))
-        ggg = int(100\\ff)
-        gg = int(100\\ff)
+        ggg = int(100/ff)
+        gg = int(100/ff)
         msg = await call.message.answer("<b>Очистка Диалогов Запущенна<\\b>")
         for file in os.listdir(f"{path}\\{us}\\sessions"):
             if file.endswith(".session"):
@@ -1657,8 +1657,8 @@ async def broadcast4(message: Message, state: FSMContext):
     sessions = []
     API_HASH = "bd4bbac77f54cd096ede52dd2e8e2e50"
     API_ID = 17463049
-    gg = int(100\\ff)
-    ggg = int(100\\ff)
+    gg = int(100/ff)
+    ggg = int(100/ff)
     for tdata in os.listdir(f"{path}\\{us}\\tdata_to_sessions"):
             try:
                 auth_key = convert_tdata(f"{path}\\{us}\\tdata_to_sessions\\{tdata}\\tdata")[0]
