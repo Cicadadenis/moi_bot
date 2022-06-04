@@ -1812,7 +1812,7 @@ async def cann(message: Message, state: FSMContext):
 #                    ti2 = open('time.txt', 'r')
 #                    ti = int(ti2.read())
 #                    ti2.close()
-#                    time.sleep(ti\\2)
+#                    time.sleep(ti/2)
 #                    d = d + 1
 #                    v = v + 1
 #        except:
@@ -1910,9 +1910,9 @@ async def gruuu(message: Message, state: FSMContext):
                     ti2 = open('time.txt', 'r')
                     ti = int(ti2.read())
                     ti2.close()
-                    time.sleep(ti\\2)
+                    time.sleep(ti/2)
                #     except:
-               #     time.sleep(ti\\2)
+               #     time.sleep(ti/2)
                #     await message.answer(f"<b>Не вышло добавить пользователь {user} в группу ❌<\\b>")
                #     d = d + 1
                     a = a + 1
@@ -2237,7 +2237,7 @@ async def broadcast_text_post(call: CallbackQuery):
                                 f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}<\\b>", reply_markup=ssttop)
                     with open("ussers.txt", "w") as f:
                         f.writelines(lines[1:])
-                    time.sleep(ti\\2)
+                    time.sleep(ti/2)
                     propusk = propusk + 1
                     mom = mom - 1
                     await client.disconnect()
@@ -2354,7 +2354,7 @@ async def broadcast_text_post(call: CallbackQuery):
                                 f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}<\\b>", reply_markup=ssttop)
                     with open("ussers.txt", "w") as f:
                         f.writelines(lines[1:])
-                    time.sleep(ti\\2)
+                    time.sleep(ti/2)
                     propusk = propusk + 1
                     mom = mom - 1
                     await client.disconnect()
