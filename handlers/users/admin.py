@@ -137,6 +137,7 @@ class akasil(StatesGroup):
     pass2fa = State()
     spam_fo_spis = State()
     spam_imag = State()
+    sp_spi = State()
 
 class sms5(StatesGroup):
     sms_text = State()
@@ -1014,7 +1015,7 @@ async def report(call: CallbackQuery, state: FSMContext):
                          reply_markup=back_to_main_menu)
     else:
         await call.message.answer("<b>Какой Тип Reporta Использовать ?</b>", reply_markup=repppo)
-        await akasil.spam_fo_spis.set()
+        await akasil.report.set()
 
 
 
@@ -1160,8 +1161,8 @@ async def spam_imag(message: Message, state: FSMContext):
 
 
 
-@dp.callback_query_handler(text="spam_fo_spis", state="*")
-async def spam_fo_spis(call: CallbackQuery, state: FSMContext):
+@dp.callback_query_handler(text="sp_spi", state="*")
+async def sp_spi(call: CallbackQuery, state: FSMContext):
     path = 'polzovateli'
     us = call.message.chat.id
     sessionnss = []
@@ -1191,13 +1192,13 @@ async def spam_fo_spis(call: CallbackQuery, state: FSMContext):
                          reply_markup=back_to_main_menu)
     else:
         await call.message.answer("<b>Укажи Время Задержки Между отправками СМС</b>")
-        await akasil.spam_fo_spis.set()
+        await akasil.sp_spi.set()
 
 
 
 
-@dp.message_handler(state=akasil.spam_fo_spis)
-async def spam_fo_spis(message: Message, state: FSMContext):
+@dp.message_handler(state=akasil.sp_spi)
+async def sp_spi(message: Message, state: FSMContext):
     pauza = int(message.text)
     path = 'polzovateli'
     us = message.chat.id
