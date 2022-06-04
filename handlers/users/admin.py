@@ -1135,22 +1135,17 @@ async def spam_imag(message: Message, state: FSMContext):
                                     f"<b>❌     Недоставленно:  {c}</b>\n"
                                     f"<b>✅     Доставленно:    {o}</b>\n\n"
                                     f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-                    z = 0
+                
                     time.sleep(pauza)
                     open(f"{path}/{us}/ussers.txt", "w")
                     for x in baza:
                         with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
                             f.write(f"{x}\n")
-                    @dp.callback_query_handler(lambda c: c.data)
-                    async def poc_callback_but(c:CallbackQuery):
-                        stop = c.data
-                        if stop == "ssstop":
-                            await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
-
+ 
                 await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
                                     f"<b>❌     Недоставленно:  {c}</b>\n"
                                     f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-                break
+                
             
     except:
         await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
