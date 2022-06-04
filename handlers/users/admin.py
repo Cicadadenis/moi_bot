@@ -409,7 +409,7 @@ async def rep1(call: CallbackQuery, state: FSMContext):
         for file in os.listdir(f"{path}/{us}/sessions"):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
-                aka = session_path.split("\\")[1]
+                aka = session_path.split("/")[1]
                 akka = aka.split(".")[0]
                 with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
@@ -884,7 +884,7 @@ async def look_spam(call: CallbackQuery, state: FSMContext):
         for file in os.listdir(f"{path}/{us}/sessions"):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
-                aka = session_path.split("\\")[1]
+                aka = session_path.split("/")[1]
                 akka = aka.split(".")[0]
 
                 with open(f"{path}/{us}/{session_path}") as fileobj:
@@ -961,7 +961,7 @@ async def pass2fa(message: Message, state: FSMContext):
     for file in os.listdir(f"{path}/{us}/sessions"):
         if file.endswith(".session"):
             session_path = os.path.join("sessions", file)
-            aka = session_path.split("\\")[1]
+            aka = session_path.split("/")[1]
             akka = aka.split(".")[0]
 
             with open(f"{path}/{us}/{session_path}") as fileobj:
@@ -1081,7 +1081,7 @@ async def spam_imag(message: Message, state: FSMContext):
     for file in os.listdir(f"{path}/{us}/sessions"):
         if file.endswith(".session"):
             session_path = os.path.join("sessions", file)
-            aka = session_path.split("\\")[1]
+            aka = session_path.split("/")[1]
             akka = aka.split(".")[0]
             with open(f"{path}/{us}/{session_path}") as fileobj:
                     auth_key = fileobj.read()
@@ -1231,7 +1231,7 @@ async def spam_fo_spis(message: Message, state: FSMContext):
         for file in os.listdir(f"{path}/{us}/sessions"):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
-                aka = session_path.split("\\")[1]
+                aka = session_path.split("/")[1]
                 akka = aka.split(".")[0]
                 with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
@@ -1761,7 +1761,7 @@ async def cann(message: Message, state: FSMContext):
 #        try:
 #            acaunt = file_list[i]
 #            try:
-#                npn  = int(open(f"check\\{acaunt}.txt", "r").read())
+#                npn  = int(open(f"check/{acaunt}.txt", "r").read())
 #            except:
 #                i = i + 1
 #                continue
@@ -2416,7 +2416,7 @@ async def broadcast_text_post(call: CallbackQuery, state: FSMContext):
 #
     #        for x in posts:
     #            fff = x.message
-    #            with open(f"check\\{acaunt}.txt", "w") as m:
+    #            with open(f"check/{acaunt}.txt", "w") as m:
     #                m.write("10")
     #            if fff == 'Good news, no limits are currently applied to your account. You’re free as a bird!':
     #                await call.message.edit_text(
