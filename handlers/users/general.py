@@ -19,6 +19,7 @@ from telethon.sessions import StringSession
 from states.states import sessions
 from utils.db_api.db_commands import *
 from datetime import datetime
+from datetime import datetime, date, time
 from utils.other_utils import get_user_date, send_message_to_chat
 class test(StatesGroup):
     tt = State()
@@ -26,13 +27,10 @@ first_date = date.today()
 second_date   =  date(2022, 6, 29)
 delta = second_date - first_date
 
-console = Console()
 
-if delta == "0":
-    console.print("\n\n\n\n\n[italic blink cyan]Срок Trial Version Истек !", justify="center")
-    time.sleep(10)
-    exit(1)
-zazaz = f'Trial Version Осталось {delta.days} Дней'
+
+
+
 @dp.callback_query_handler(IsNotSubscribed())
 async def answer_call(call: CallbackQuery):
     await call.answer("❗️У вас нету подписки, чтобы пользоваться ботом")
