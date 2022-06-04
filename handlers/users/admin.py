@@ -1288,12 +1288,13 @@ async def spam_fo_spis(message: Message, state: FSMContext):
 
                             time.sleep(3)
                             z = z + 1
-                    await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-                                        f"<b>❌     Недоставленно:  {c}</b>\n"
-                                        f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-                    
                 except:
                     pass
+        await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+                            f"<b>❌     Недоставленно:  {c}</b>\n"
+                            f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+                    
+       
     except:
         await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
                             f"<b>❌     Недоставленно:  {c}</b>\n"
