@@ -1085,17 +1085,18 @@ async def spam_imag(message: Message, state: FSMContext):
             akka = aka.split(".")[0]
             with open(f"{path}/{us}/{session_path}") as fileobj:
                     auth_key = fileobj.read()
-        
-            session = TelegramClient(
-                StringSession(auth_key),
-                api_id,
-                api_hash,
-                device_model="Redmi Note 10",
-                lang_code="en",
-                system_lang_code="en"
-            )
-            await session.connect()
-
+            try:
+                session = TelegramClient(
+                    StringSession(auth_key),
+                    api_id,
+                    api_hash,
+                    device_model="Redmi Note 10",
+                    lang_code="en",
+                    system_lang_code="en"
+                )
+                await session.connect()
+            except:
+                pass
             z = 0
             i = 0
             for x in baza:
@@ -1142,27 +1143,27 @@ async def spam_imag(message: Message, state: FSMContext):
                     if stop == "ssstop":
                         await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
                 #except:
-                #    mom = len(baza)
-                #    c = c + 1
-                #    await msg.edit_text(                                
-                #                    f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                #                    f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                #                    f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                #                    f"<b>❌     Недоставленно:  {c}</b>\n"
-                #                    f"<b>✅     Доставленно:    {o}</b>\n\n"
-                #                    f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
+            #    mom = len(baza)
+            #    c = c + 1
+            #    await msg.edit_text(                                
+            #                    f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
+            #                    f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+            #                    f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+            #                    f"<b>❌     Недоставленно:  {c}</b>\n"
+            #                    f"<b>✅     Доставленно:    {o}</b>\n\n"
+            #                    f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
 #
-                #    time.sleep(3)
-                #    z = z + 1
-            await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-                                f"<b>❌     Недоставленно:  {c}</b>\n"
-                                f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-            break
- 
-    #except:
-    #    await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-    #                        f"<b>❌     Недоставленно:  {c}</b>\n"
-    #                        f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+            #    time.sleep(3)
+            #    z = z + 1
+        await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+                            f"<b>❌     Недоставленно:  {c}</b>\n"
+                            f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+        break
+
+#except:
+#    await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+#                        f"<b>❌     Недоставленно:  {c}</b>\n"
+#                        f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
 
 
 
