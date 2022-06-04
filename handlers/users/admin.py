@@ -1102,14 +1102,14 @@ async def spam_imag(message: Message, state: FSMContext):
                     pass
                 z = 0
                 i = 0
-                for x in baza:
+                for z in baza:
 
                     if i == 35:
                         break
                     #try:
                     me = await session.get_me()
                     try:
-                        v = await session.get_input_entity(x)     
+                        v = await session.get_input_entity(z)     
                     except:
                         continue
                     us = int(v.user_id)         
@@ -1124,12 +1124,12 @@ async def spam_imag(message: Message, state: FSMContext):
                                 caption=mes,
                                 parse_mode="html"
                             )
-                    baza.remove(x) 
+                    baza.remove(z) 
                     o = o + 1
                     mom = len(baza)
                     await msg.edit_text(                                
                                     f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                    f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                                    f"<b>На пользователя 🗣 {z} ✅</b>\n\n"
                                     f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
                                     f"<b>❌     Недоставленно:  {c}</b>\n"
                                     f"<b>✅     Доставленно:    {o}</b>\n\n"
@@ -1268,9 +1268,9 @@ async def spam_fo_spis(message: Message, state: FSMContext):
                             z = 0
                             time.sleep(pauza)
                             open(f"{path}/{us}/ussers.txt", "w")
-                            for x in baza:
+                            for z in baza:
                                 with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                    f.write(f"{x}\n")
+                                    f.write(f"{z}\n")
                             @dp.callback_query_handler(lambda c: c.data)
                             async def poc_callback_but(c:CallbackQuery):
                                 stop = c.data
@@ -1279,9 +1279,9 @@ async def spam_fo_spis(message: Message, state: FSMContext):
                         except:
                             baza.remove(x) 
                             open(f"{path}/{us}/ussers.txt", "w")
-                            for x in baza:
+                            for z in baza:
                                 with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                    f.write(f"{x}\n")
+                                    f.write(f"{z}\n")
                             mom = len(baza)
 
                             c = c + 1
