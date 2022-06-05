@@ -1215,6 +1215,8 @@ async def sp_spi(message: Message, state: FSMContext):
             with open(f"{path}/{us}/{session_path}") as fileobj:
                     auth_key = fileobj.read()
                     ses.append(auth_key)
+    c = 0
+    h = 0
     for tg in ses:
         session = TelegramClient(
             StringSession(tg),
@@ -1226,8 +1228,7 @@ async def sp_spi(message: Message, state: FSMContext):
         )
         await session.connect()
 
-        c = 0
-        h = 0
+
         i = 0
         for x in baza:
             if i == 35:
