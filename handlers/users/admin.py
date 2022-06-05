@@ -406,12 +406,11 @@ async def rep1(call: CallbackQuery, state: FSMContext):
         for s in d:
             if s >= '0':
                 baza.append(s)
-    for x in baza:
+    for z in baza:
         for file in os.listdir(f"{path}/{us}/sessions"):
             if file.endswith(".session"):
                 session_path = os.path.join("sessions", file)
-                aka = session_path.split("/")[1]
-                akka = aka.split(".")[0]
+
                 with open(f"{path}/{us}/{session_path}") as fileobj:
                         auth_key = fileobj.read()
                 #try:
@@ -429,13 +428,13 @@ async def rep1(call: CallbackQuery, state: FSMContext):
                 iidd = [int(f)]
                 me = await session.get_me()
                 try:
-                    v = await session.get_input_entity(x) 
+                    v = await session.get_input_entity(z) 
                     t = v
                     uss = int(v.user_id) 
                     asa = await session.get_input_entity(PeerUser(uss))
-                    await msgs.edit_text(f"<b>Жалоба Отправленна С Акаунта {akka}</b>\n"
-                                            f"<b>На Пользователя {x}</b>")
-                    break
+                    await msgs.edit_text(f"<b>Жалоба Отправленна С Акаунта {me.first_name}</b>\n"
+                                            f"<b>На Пользователя {z}</b>")
+                    
                 #except:
                 #    vvv = await session.get_input_entity(x)
                 #    ttt = vvv
@@ -444,8 +443,8 @@ async def rep1(call: CallbackQuery, state: FSMContext):
                 #    await msgs.edit_text(f"<b>Жалоба Отправленна С Акаунта {akka}</b>\n"
                 #                            f"<b>На Пользователя {x}</b>")  
                 except:
-                    await msgs.edit_text(f"<b>Пользователь {x} Мертв</b>")  
-                    break
+                    await msgs.edit_text(f"<b>Пользователь {z} Мертв</b>")  
+                    
     await msgs.edit_text(f"<b>Жалобы Отправленны</b>", reply_markup=back_to_main_menu)
 
 @dp.callback_query_handler(text="refoto", state="*")
