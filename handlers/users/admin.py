@@ -1113,14 +1113,14 @@ async def spam_imag(message: Message, state: FSMContext):
                         v = await session.get_input_entity(z)     
                     except:
                         continue
-                    us = int(v.user_id)         
-                    asa = await session.get_input_entity(PeerUser(us))
+                    usu = int(v.user_id)         
+                    asa = await session.get_input_entity(PeerUser(usu))
                     mes = random.choice(text)
                     i = i + 1  
                     with open(f"{path}/{us}/media/{fil}", "rb") as f:
                         ph = f.read()
                         await session.send_file(
-                                us,
+                                usu,
                                 ph,
                                 caption=mes,
                                 parse_mode="html"
@@ -1169,13 +1169,6 @@ async def sp_spi(call: CallbackQuery, state: FSMContext):
     file_list = len(sessionnss)
     users = len(open(f"{path}/{us}/ussers.txt", "r", encoding="utf-8").readlines())
     mes = len(open(f"{path}/{us}/message.txt", "r", encoding="utf-8").read())
-    izo = len(os.listdir(f"{path}/{us}/media"))
-    if mes >= 1:
-        sms = "есть"
-    else:
-        sms = "нет"
-    ban = len(os.listdir(f"{path}/{us}/sessions/spamblock"))
-    report = len(open(f"{path}/{us}/report.txt", "r", encoding="utf-8").readlines())
     if file_list <= 0:
         await call.message.answer('<b>У Тебя Нет Акаунтов</b>',
                          reply_markup=back_to_main_menu)
@@ -1211,97 +1204,78 @@ async def sp_spi(message: Message, state: FSMContext):
         for s in d:
             if s >= '0':
                 baza.append(s)
-    c = 0
-    o = 0
-    try:
-        keyboard = InlineKeyboardMarkup()
-        keyboard.add(InlineKeyboardButton(text="Остановить", callback_data="ssstop"))
-        for file in os.listdir(f"{path}/{us}/sessions"):
-            if file.endswith(".session"):
-                session_path = os.path.join("sessions", file)
-                aka = session_path.split("/")[1]
-                akka = aka.split(".")[0]
-                with open(f"{path}/{us}/{session_path}") as fileobj:
-                        auth_key = fileobj.read()
-                
-                session = TelegramClient(
-                    StringSession(auth_key),
-                    api_id,
-                    api_hash,
-                    device_model="Redmi Note 10",
-                    lang_code="en",
-                    system_lang_code="en"
-                )
-                await session.connect()
 
-             
-                i = 0
-                for x in baza:
+    ses = []
+    for file in os.listdir(f"{path}/{us}/sessions"):
+        if file.endswith(".session"):
+            session_path = os.path.join("sessions", file)
+            akaaka = session_path[9:]
+            aka = akaaka.split(".")[0]
+            akka = aka.split(".")[0]
+            with open(f"{path}/{us}/{session_path}") as fileobj:
+                    auth_key = fileobj.read()
+                    ses.append(auth_key)
+    for tg in ses:
+        session = TelegramClient(
+            StringSession(tg),
+            api_id,
+            api_hash,
+            device_model="Redmi Note 10",
+            lang_code="en",
+            system_lang_code="en"
+        )
+        await session.connect()
 
-                    if i == 35:
-                        break
-                    try:
-                        me = await session.get_me()
-                        
-                        v = await session.get_input_entity(x)     
-                    
-                        us = int(v.user_id)         
-                        asa = await session.get_input_entity(PeerUser(us))
-                        mes = random.choice(text)
-                        i = i + 1  
-                        await session.send_message(us, mes, parse_mode="html")
-                        baza.remove(x) 
-                        o = o + 1
-                        mom = len(baza)
-                        await msg.edit_text(                                
-                                        f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                        f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                                        f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                                        f"<b>❌     Недоставленно:  {c}</b>\n"
-                                        f"<b>✅     Доставленно:    {o}</b>\n\n"
-                                        f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-                   
-                        time.sleep(pauza)
-                        open(f"{path}/{us}/ussers.txt", "w")
-                        for z in baza:
-                            with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                f.write(f"{z}\n")
-                        @dp.callback_query_handler(lambda c: c.data)
-                        async def poc_callback_but(c:CallbackQuery):
-                            stop = c.data
-                            if stop == "ssstop":
-                                await call.message.answer("<b>Рассылка Остановленна</b>", reply_markup=back_to_main_menu)
-                    except:
-                        baza.remove(x) 
-                        open(f"{path}/{us}/ussers.txt", "w")
-                        for zz in baza:
-                            with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
-                                f.write(f"{zz}\n")
-                        mom = len(baza)
-
-                        c = c + 1
-                        await msg.edit_text(                                
-                                        f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {akka} 💠 </b>\n\n"
-                                        f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
-                                        f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
-                                        f"<b>❌     Недоставленно:  {c}</b>\n"
-                                        f"<b>✅     Доставленно:    {o}</b>\n\n"
-                                        f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>", reply_markup=keyboard)
-
-                        time.sleep(3)
-                    
-              
-                await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-                                    f"<b>❌     Недоставленно:  {c}</b>\n"
-                                    f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
+        c = 0
+        h = 0
+        i = 0
+        for x in baza:
+            if i == 35:
                 break
+            
+            me = await session.get_me()         
+            v = await session.get_input_entity(x)          
+            usu = int(v.user_id)         
+            asa = await session.get_input_entity(PeerUser(usu))
+            mes = random.choice(text)
+            i = i + 1  
+            try:
+                await session.send_message(usu, mes, parse_mode="html")
+                print(x)
+
+
+                mom = len(baza)
+                await msg.edit_text(                                
+                            f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {me.first_name} 💠 </b>\n\n"
+                            f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                            f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+                            f"<b>❌     Недоставленно:  {c}</b>\n"
+                            f"<b>✅     Доставленно:    {h}</b>\n\n"
+                            f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>")
+                h = h + 1
+                baza.remove(x)
+                time.sleep(pauza)
+                open(f"{path}/{us}/ussers.txt", "w")
+                for z in baza:
+                    with open(f"{path}/{us}/ussers.txt", "a", encoding="utf-8") as f:
+                        f.write(f"{z}\n")
+                
+            except:
+                c = c + 1
+                mom = len(baza)
+                await msg.edit_text(                                
+                            f"✉️    <b>Рассылка с Акаунта:</b>    \n\n    <b>⚜️ {me.first_name} 💠 </b>\n\n"
+                            f"<b>На пользователя 🗣 {x} ✅</b>\n\n"
+                            f"🛑    <b>Пауза между смс:</b>   <b>{pauza} сек</b>\n"
+                            f"<b>❌     Недоставленно:  {c}</b>\n"
+                            f"<b>✅     Доставленно:    {h}</b>\n\n"
+                            f"<b>‼️ Осталось 👩‍👩‍👧‍👧 {mom}</b>")
+    await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
+                        f"<b>❌     Недоставленно:  {c}</b>\n"
+                        f"<b>✅     Доставленно:    {h}</b>\n\n")
+    
                     
        
-    except:
-        await msg.edit_text(f"✉️    <b>💠 Рассылка Спама Завершена 💠</b>\n\n"
-                            f"<b>❌     Недоставленно:  {c}</b>\n"
-                            f"<b>✅     Доставленно:    {o}</b>\n\n", reply_markup=back_to_main_menu)
-
 
 
 # ===============ADD/CHANGE ACCOUNT===========
@@ -2192,6 +2166,9 @@ async def broadcast_text_post(call: CallbackQuery):
                     with open("ussers.txt", "r") as z:
                         lines = z.readlines()
                         far = lines[0][:-1]
+
+                    with open("ussers.txt", "w") as f:
+                        f.writelines(lines[1:])
                     xxw = await client.get_entity(far)
                     await client.send_file(xxw, file=fff, caption=ssm)
                     with open("ussers.txt", "w") as f:
